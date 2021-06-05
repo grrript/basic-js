@@ -19,23 +19,42 @@ const isEndOfCols = (numOfCols, index) => {
   }
   return false
 }
+
 const jsonToCSV = (json) => {
   const cols = Object.keys(json[0])
   console.log(cols)
   const numOfCols = cols.length
   let csvFile = ''
+  let csvLine = ''
+  // add headers as the first row
   cols.map((col, index) => {
-    csvFile = csvFile + col + (isEndOfCols(numOfCols, index) ? '\n' : ',')
+    csvLine += col + (isEndOfCols(numOfCols, index) ? '\n' : ',')
   })
+  csvFile += csvLine
+
+  // add the rows
   const data = json.map((item) => {
-    return cols.map((colKey, index) => {
-      csvFile =
-        csvFile + item[colKey] + (isEndOfCols(numOfCols, index) ? '\n' : ',')
+    csvLine = ''
+    cols.map((colKey, index) => {
+      csvLine += item[colKey] + (isEndOfCols(numOfCols, index) ? '\n' : ',')
     })
+    csvFile += csvLine
   })
   console.log('csvFile: ', csvFile)
   return csvFile
-  console.log('data: ', data)
 }
 
 const csv = jsonToCSV(json)
+
+const rows = [
+  ['name1', 'city1', 'some other info'],
+  ['name2', 'city2', 'more info'],
+]
+
+let csvContent = 'data:text/csv;charset=utf-8,'
+
+rows.forEach(function (rowArray) {
+  let row = rowArray.join(',')
+  csvContent += row + '\r\n'
+})
+console.log('csvContent: ', csvContent)
