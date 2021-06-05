@@ -11,9 +11,6 @@ more changes here
 changes 6
 
 changes 5
-<<<<<<< Updated upstream
 change 9
-=======
 
 change 8
->>>>>>> Stashed changes
