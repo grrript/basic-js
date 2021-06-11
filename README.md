@@ -24,3 +24,7 @@ branch feature_1 change 13
 
 hi there
 feature 1b change 15
+
+feeature2
+
+local change 1
